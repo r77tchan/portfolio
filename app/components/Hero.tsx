@@ -1,11 +1,12 @@
 import Image from "next/image";
 import { FaExternalLinkAlt, FaGithub } from "react-icons/fa";
+import { BASE_PATH } from "../lib/basePath";
 
 export default function Hero() {
   return (
     <section className="relative w-full overflow-hidden bg-white">
       <Image
-        src="/hero.png"
+        src={`${BASE_PATH}/hero.png`}
         alt="Workspace with laptop, plant, and coffee cup"
         fill
         priority
