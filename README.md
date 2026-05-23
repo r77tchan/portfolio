@@ -1,36 +1,69 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# T.A Portfolio
 
-## Getting Started
+ポートフォリオサイトです。
 
-First, run the development server:
+公開URL: https://r77tchan.github.io/portfolio/
+
+## セクション構成
+
+- **Hero** — 自己紹介・GitHubリンク
+- **Works** — 制作実績
+- **Experience** — 職務経歴
+- **Skills** — 技術スタック
+- **Footer** — コピーライト
+
+## 技術スタック
+
+- [Next.js 16](https://nextjs.org/) (App Router / Static Export)
+- [React 19](https://react.dev/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Tailwind CSS v4](https://tailwindcss.com/)
+- [react-icons](https://react-icons.github.io/react-icons/)
+
+## ディレクトリ構成
+
+```
+app/
+  components/   # 各セクションのコンポーネント
+  lib/          # 共通モジュール (BASE_PATH 等)
+  layout.tsx    # ルートレイアウト
+  page.tsx      # トップページ
+public/         # 静的アセット (画像等)
+.github/
+  workflows/    # GitHub Actions (デプロイ用)
+```
+
+## 開発
+
+依存関係のインストール:
+
+```bash
+npm install
+```
+
+開発サーバーの起動 ([http://localhost:3000](http://localhost:3000)):
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+その他のコマンド:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+npm run build       # 本番ビルド (out/ に静的書き出し)
+npm run lint        # ESLint
+npm run typecheck   # TypeScript 型チェック
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## デプロイ
 
-## Learn More
+`main` ブランチへのプッシュで GitHub Actions が自動的に GitHub Pages へデプロイします (`.github/workflows/deploy.yml`)。
 
-To learn more about Next.js, take a look at the following resources:
+ビルド設定 (`next.config.ts`):
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `output: "export"` — 静的書き出し
+- `trailingSlash: true` — GitHub Pages 用 URL 形式
+- `basePath: "/portfolio"` (本番のみ) — リポジトリ名配下で公開
+- `images.unoptimized: true` — 静的ホスティング向けに画像最適化を無効化
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+`public/` 配下の画像参照は `app/lib/basePath.ts` の `BASE_PATH` を付与してください (static export では `next/image` の `src` に basePath が自動付与されないため)。
