@@ -49,11 +49,11 @@ export default function Experience() {
           {experiences.map((exp) => (
             <li
               key={exp.company}
-              className="relative grid grid-cols-[12px_160px_1fr] items-start gap-x-8 border-b border-gray-100 py-8 last:border-0"
+              className="relative grid grid-cols-[auto_1fr] items-start gap-x-4 gap-y-2 border-b border-gray-100 py-8 last:border-0 md:grid-cols-[12px_160px_1fr] md:gap-x-8 md:gap-y-0"
             >
               <span className="mt-1.5 h-3 w-3 rounded-full bg-blue-600" />
               <p className="text-sm font-medium text-blue-600">{exp.period}</p>
-              <div className="flex flex-col gap-3">
+              <div className="col-start-2 flex flex-col gap-3 md:col-start-3">
                 <h3 className="text-lg font-bold">{exp.company}</h3>
                 <p className="text-base font-bold">{exp.role}</p>
                 <p className="text-sm leading-relaxed text-gray-700">
